@@ -1,48 +1,50 @@
-import { ButtonHTMLAttributes } from 'react';
-import { cn } from '@/lib/utils';
+import { ReactNode } from 'react';
+import { motion } from 'framer-motion';
 
-interface PopButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'accent';
+interface PopButtonProps {
+  children: ReactNode;
+  onClick?: () => void;
+  variant?: 'primary' | 'secondary';
   size?: 'sm' | 'md' | 'lg';
-  bounce?: boolean;
+  className?: string;
 }
 
-export const PopButton = ({ 
-  children, 
-  className, 
-  variant = 'primary', 
-  size = 'md',
-  bounce = true,
-  ...props 
-}: PopButtonProps) => {
+const PopButton = ({ children, onClick, variant = 'primary', size = 'md', className = '' }: PopButtonProps) => {
+  const baseClasses = "handwritten font-bold border-4 border-black transform transition-all duration-200 cursor-pointer shadow-lg";
+  
   const variants = {
-    primary: 'bg-gradient-to-r from-pop-orange to-pop-pink hover:from-pop-pink hover:to-pop-orange border-pop-orange',
-    secondary: 'bg-gradient-to-r from-pop-yellow to-pop-orange hover:from-pop-orange hover:to-pop-yellow border-pop-yellow',
-    accent: 'bg-gradient-to-r from-pop-purple to-pop-blue hover:from-pop-blue hover:to-pop-purple border-pop-purple'
+    primary: "bg-gradient-to-r from-orange-400 to-pink-500 text-white hover:from-orange-500 hover:to-pink-600",
+    secondary: "bg-gradient-to-r from-pink-400 to-orange-500 text-white hover:from-pink-500 hover:to-orange-600"
   };
-
+  
   const sizes = {
-    sm: 'px-4 py-2 text-sm border-2',
-    md: 'px-6 py-3 text-lg border-3',
-    lg: 'px-8 py-4 text-xl border-4'
+    sm: "px-4 py-2 text-sm",
+    md: "px-6 py-3 text-lg",
+    lg: "px-8 py-4 text-xl"
   };
 
   return (
-    <button
-      className={cn(
-        'font-handwritten font-bold text-white rounded-full transform transition-all duration-200',
-        'hover:scale-110 hover:rotate-2 active:scale-95 shadow-lg hover:shadow-2xl',
-        'relative overflow-hidden',
-        bounce && 'animate-pop-bounce hover:animate-wiggle',
-        variants[variant],
-        sizes[size],
-        'before:absolute before:inset-0 before:bg-white before:opacity-0 before:transition-opacity before:duration-200',
-        'hover:before:opacity-20',
-        className
-      )}
-      {...props}
+    <motion.button
+      className={`${baseClasses} ${variants[variant]} ${sizes[size]} ${className}`}
+      onClick={onClick}
+      whileHover={{ 
+        scale: 1.02, 
+        rotate: [0, 0.5, 0], 
+        boxShadow: "6px 6px 0px rgba(0,0,0,0.3)"
+      }}
+      whileTap={{ scale: 0.98 }}
+      animate={{ 
+        y: [0, -1, 0],
+        transition: { 
+          duration: 3, 
+          repeat: Infinity, 
+          repeatType: "reverse" 
+        }
+      }}
     >
-      <span className="relative z-10 drop-shadow-lg">{children}</span>
-    </button>
+      {children}
+    </motion.button>
   );
 };
+
+export default PopButton;

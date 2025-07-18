@@ -1,5 +1,5 @@
-import { PopFrame } from './PopFrame';
-import { PopButton } from './PopButton';
+import { motion } from 'framer-motion';
+import PopButton from './PopButton';
 
 interface Product {
   id: number;
@@ -7,71 +7,52 @@ interface Product {
   price: string;
   image: string;
   category: string;
-  isNew?: boolean;
 }
 
 interface ProductCardProps {
   product: Product;
 }
 
-export const ProductCard = ({ product }: ProductCardProps) => {
+const ProductCard = ({ product }: ProductCardProps) => {
   return (
-    <div className="group">
-      <PopFrame variant="primary" size="md" className="hover:shadow-2xl transition-shadow duration-300">
-        <div className="relative">
-          {product.isNew && (
-            <div className="absolute -top-3 -right-3 z-20 bg-pop-yellow text-comic-black font-comic font-black px-3 py-1 rounded-full border-3 border-comic-black transform rotate-12 animate-bounce-in">
-              NEW!
-            </div>
-          )}
-          
-          <div className="aspect-square overflow-hidden rounded-lg border-4 border-comic-black relative">
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-          </div>
-
-          <div className="p-4 space-y-3">
-            <div className="text-center">
-              <span className="inline-block bg-pop-blue text-white px-3 py-1 rounded-full text-sm font-handwritten font-bold transform -rotate-1">
-                {product.category}
-              </span>
-            </div>
-            
-            <h3 className="font-comic text-xl font-black text-comic-black text-center transform hover:scale-105 transition-transform">
-              {product.name}
-            </h3>
-            
-            <div className="text-center">
-              <span className="font-handwritten text-2xl font-black text-pop-orange drop-shadow-lg">
-                {product.price}
-              </span>
-            </div>
-
-            <div className="flex gap-2 pt-2">
-              <PopButton 
-                variant="primary" 
-                size="sm" 
-                className="flex-1"
-                bounce={false}
-              >
-                加入购物车
-              </PopButton>
-              <PopButton 
-                variant="accent" 
-                size="sm"
-                bounce={false}
-                className="shrink-0"
-              >
-                ❤️
-              </PopButton>
-            </div>
-          </div>
+    <motion.div
+      className="pop-frame bg-white p-6 m-4 max-w-sm"
+      whileHover={{ y: -5 }}
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="relative overflow-hidden border-4 border-black mb-4">
+        <img 
+          src={product.image} 
+          alt={product.name}
+          className="w-full h-48 object-cover transform hover:scale-105 transition-transform duration-300"
+        />
+        <div className="absolute top-2 right-2 bg-gradient-to-r from-pink-500 to-orange-500 text-white px-3 py-1 rounded-full handwritten text-sm font-bold border-2 border-black">
+          {product.category}
         </div>
-      </PopFrame>
-    </div>
+      </div>
+      
+      <h3 className="handwritten text-2xl font-bold text-gray-800 mb-2 transform -rotate-0.5">
+        {product.name}
+      </h3>
+      
+      <div className="flex justify-between items-center mb-4">
+        <span className="text-3xl font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent handwritten">
+          {product.price}
+        </span>
+        <div className="flex space-x-1">
+          <div className="w-3 h-3 bg-orange-400 rounded-full"></div>
+          <div className="w-3 h-3 bg-pink-400 rounded-full"></div>
+          <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+        </div>
+      </div>
+      
+      <PopButton variant="primary" size="md" className="w-full">
+        加入购物车！
+      </PopButton>
+    </motion.div>
   );
 };
+
+export default ProductCard;

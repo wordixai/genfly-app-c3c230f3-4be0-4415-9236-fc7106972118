@@ -8,14 +8,14 @@ const HeroSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
             className="text-center lg:text-left"
-            initial={{ x: -100, opacity: 0 }}
+            initial={{ x: -50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 1 }}
           >
             <motion.h2 
-              className="handwritten text-6xl lg:text-8xl font-bold text-white mb-6 transform -rotate-2"
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
+              className="handwritten text-6xl lg:text-8xl font-bold text-white mb-6 transform -rotate-1"
+              animate={{ y: [0, -3, 0] }}
+              transition={{ duration: 3, repeat: Infinity }}
             >
               POP ART
               <br />
@@ -35,7 +35,7 @@ const HeroSection = () => {
             
             <motion.div 
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-              initial={{ y: 50, opacity: 0 }}
+              initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.8 }}
             >
@@ -50,14 +50,14 @@ const HeroSection = () => {
           
           <motion.div
             className="relative"
-            initial={{ x: 100, opacity: 0 }}
+            initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 1 }}
           >
             <motion.div 
               className="pop-frame bg-white p-8"
-              animate={{ rotate: [1, -1, 1] }}
-              transition={{ duration: 4, repeat: Infinity }}
+              animate={{ rotate: [0.5, -0.5, 0.5] }}
+              transition={{ duration: 5, repeat: Infinity }}
             >
               <img 
                 src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=500&h=600&fit=crop"
@@ -68,16 +68,16 @@ const HeroSection = () => {
             
             <motion.div 
               className="absolute -top-8 -right-8 w-24 h-24 bg-yellow-400 rounded-full border-4 border-black flex items-center justify-center"
-              animate={{ y: [0, -20, 0], rotate: 360 }}
-              transition={{ duration: 3, repeat: Infinity }}
+              animate={{ y: [0, -5, 0], rotate: [0, 10, 0] }}
+              transition={{ duration: 4, repeat: Infinity }}
             >
               <span className="handwritten text-2xl font-bold">WOW!</span>
             </motion.div>
             
             <motion.div 
               className="absolute -bottom-4 -left-4 w-16 h-16 bg-pink-500 rounded-full border-4 border-black"
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
+              animate={{ scale: [1, 1.05, 1] }}
+              transition={{ duration: 3, repeat: Infinity }}
             ></motion.div>
           </motion.div>
         </div>
