@@ -1,100 +1,135 @@
-import Header from '../components/Header';
-import HeroSection from '../components/HeroSection';
-import ProductCard from '../components/ProductCard';
-import { motion } from 'framer-motion';
-import { products } from '../data/products';
+import { Header } from '@/components/Header';
+import { Hero } from '@/components/Hero';
+import { ProductCard } from '@/components/ProductCard';
+import { PopButton } from '@/components/PopButton';
+import { ComicDots } from '@/components/ComicDots';
+
+const mockProducts = [
+  {
+    id: 1,
+    name: "波普艺术T恤",
+    price: "¥299",
+    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400",
+    category: "服装",
+    isNew: true
+  },
+  {
+    id: 2,
+    name: "彩虹帆布包",
+    price: "¥189",
+    image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400",
+    category: "配饰"
+  },
+  {
+    id: 3,
+    name: "复古海报画",
+    price: "¥599",
+    image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400",
+    category: "艺术品",
+    isNew: true
+  },
+  {
+    id: 4,
+    name: "潮流棒球帽",
+    price: "¥159",
+    image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400",
+    category: "配饰"
+  },
+  {
+    id: 5,
+    name: "漫画风手机壳",
+    price: "¥89",
+    image: "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=400",
+    category: "数码"
+  }
+];
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-br from-pop-orange via-pop-pink to-pop-purple">
       <Header />
-      <HeroSection />
+      <Hero />
       
-      {/* 热门商品区域 */}
-      <section className="py-20 bg-gradient-to-r from-yellow-300 via-pink-300 to-orange-300 pop-dots">
-        <div className="container mx-auto px-6">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ y: 50, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="handwritten text-5xl font-bold text-gray-800 mb-4 transform -rotate-1">
+      {/* Products Section */}
+      <section className="relative py-20 bg-gradient-to-r from-pop-yellow via-white to-pop-blue">
+        <ComicDots size="lg" color="orange" className="opacity-10" />
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="font-comic text-5xl font-black text-comic-black transform -rotate-1 drop-shadow-lg mb-4">
               🔥 热门商品 🔥
             </h2>
-            <p className="text-xl text-gray-700 font-bold">
-              最受欢迎的波普艺术单品
+            <p className="font-handwritten text-xl text-comic-black/80 max-w-2xl mx-auto">
+              精心挑选的波普艺术风格商品，每一件都充满创意与个性！
             </p>
-          </motion.div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-items-center">
-            {products.map((product, index) => (
-              <motion.div
-                key={product.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-              >
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
+            {mockProducts.map((product) => (
+              <div key={product.id} className="animate-bounce-in" style={{ animationDelay: `${product.id * 0.1}s` }}>
                 <ProductCard product={product} />
-              </motion.div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-16">
+            <PopButton variant="primary" size="lg">
+              🛍️ 查看全部商品
+            </PopButton>
+          </div>
+        </div>
+      </section>
+
+      {/* Categories Section */}
+      <section className="relative py-20 bg-gradient-to-r from-pop-purple via-pop-pink to-pop-orange">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <h2 className="font-comic text-4xl font-black text-white mb-12 transform rotate-1 drop-shadow-lg">
+            🎯 热门分类 🎯
+          </h2>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {["服装", "配饰", "艺术品", "数码"].map((category, index) => (
+              <div key={category} className="group">
+                <div className="bg-white rounded-2xl border-4 border-comic-black p-6 transform hover:scale-105 hover:rotate-2 transition-all duration-300 shadow-xl">
+                  <div className="text-4xl mb-4">
+                    {index === 0 && "👕"}
+                    {index === 1 && "👜"}
+                    {index === 2 && "🎨"}
+                    {index === 3 && "📱"}
+                  </div>
+                  <h3 className="font-handwritten text-xl font-bold text-comic-black">
+                    {category}
+                  </h3>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
-      
-      {/* CTA区域 */}
-      <section className="py-20 comic-bg">
-        <div className="container mx-auto px-6 text-center">
-          <motion.div
-            className="bg-white p-12 pop-frame max-w-2xl mx-auto"
-            initial={{ scale: 0.8, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h3 className="handwritten text-4xl font-bold text-gray-800 mb-6 transform rotate-1">
-              加入POP SHOP大家庭！
-            </h3>
-            <p className="text-xl text-gray-700 mb-8 font-bold">
-              订阅我们的newsletter，获取最新波普艺术商品信息
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input 
-                type="email" 
-                placeholder="输入你的邮箱"
-                className="flex-1 px-4 py-3 border-4 border-black handwritten text-lg focus:outline-none focus:ring-4 focus:ring-pink-300"
-              />
-              <motion.button
-                className="bg-gradient-to-r from-orange-500 to-pink-500 text-white px-6 py-3 border-4 border-black handwritten text-lg font-bold hover:from-orange-600 hover:to-pink-600 transition-all"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                订阅！
-              </motion.button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-      
+
       {/* Footer */}
-      <footer className="bg-gradient-to-r from-pink-600 to-orange-600 text-white py-12 pop-dots-pink">
-        <div className="container mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h4 className="handwritten text-3xl font-bold mb-4 transform -rotate-1">
-              POP SHOP
-            </h4>
-            <p className="text-lg font-bold mb-4">
-              让生活充满色彩，让时尚更有趣味！
-            </p>
-            <div className="flex justify-center space-x-6">
-              <div className="w-8 h-8 bg-yellow-400 rounded-full"></div>
-              <div className="w-8 h-8 bg-pink-400 rounded-full"></div>
-              <div className="w-8 h-8 bg-orange-400 rounded-full"></div>
-            </div>
-          </motion.div>
+      <footer className="bg-comic-black text-white py-16 relative overflow-hidden">
+        <ComicDots size="sm" color="pink" className="opacity-20" />
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
+          <h3 className="font-comic text-3xl font-black mb-4 transform -rotate-1">
+            POP SHOP! 🎨
+          </h3>
+          <p className="font-handwritten text-lg mb-8">
+            让艺术点亮生活，让潮流成为态度！
+          </p>
+          
+          <div className="flex justify-center space-x-6 text-2xl">
+            <span className="animate-bounce">🌟</span>
+            <span className="animate-pulse">💫</span>
+            <span className="animate-wiggle">⚡</span>
+            <span className="animate-bounce">🎯</span>
+            <span className="animate-pulse">🔥</span>
+          </div>
+          
+          <div className="mt-8 text-sm opacity-80 font-handwritten">
+            © 2024 Pop Shop. 用艺术创造美好生活 ✨
+          </div>
         </div>
       </footer>
     </div>
