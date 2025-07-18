@@ -18,7 +18,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
     <motion.div
       className="pop-frame bg-white p-6 m-4 max-w-sm"
       whileHover={{ y: -5 }}
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
@@ -33,7 +33,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </div>
       </div>
       
-      <h3 className="handwritten text-2xl font-bold text-gray-800 mb-2 transform -rotate-0.5">
+      <h3 className="handwritten text-2xl font-bold text-gray-800 mb-2 transform -rotate-1">
         {product.name}
       </h3>
       

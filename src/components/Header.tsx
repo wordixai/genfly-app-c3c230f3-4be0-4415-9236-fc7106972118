@@ -8,13 +8,13 @@ const Header = () => {
       <div className="container mx-auto flex justify-between items-center relative z-10">
         <motion.div
           className="flex items-center space-x-4"
-          initial={{ x: -50, opacity: 0 }}
+          initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
           <motion.h1 
-            className="handwritten text-4xl font-bold text-white transform -rotate-1"
-            animate={{ rotate: [-1, 0.5, -1] }}
+            className="handwritten text-4xl font-bold text-white transform -rotate-2"
+            animate={{ rotate: [-1, 1, -1] }}
             transition={{ duration: 4, repeat: Infinity }}
           >
             POP SHOP
@@ -27,9 +27,9 @@ const Header = () => {
             <motion.a
               key={item}
               href="#"
-              className="handwritten text-white text-lg font-bold hover:text-yellow-300 transition-colors transform hover:-rotate-0.5"
+              className="handwritten text-white text-lg font-bold hover:text-yellow-300 transition-colors transform hover:-rotate-1"
               whileHover={{ scale: 1.05, y: -1 }}
-              initial={{ y: -20, opacity: 0 }}
+              initial={{ y: -50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: index * 0.1 }}
             >
@@ -40,7 +40,7 @@ const Header = () => {
         
         <motion.div 
           className="flex space-x-4 items-center"
-          initial={{ x: 50, opacity: 0 }}
+          initial={{ x: 100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
         >

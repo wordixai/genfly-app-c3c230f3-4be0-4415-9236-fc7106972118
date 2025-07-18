@@ -29,7 +29,7 @@ const PopButton = ({ children, onClick, variant = 'primary', size = 'md', classN
       onClick={onClick}
       whileHover={{ 
         scale: 1.02, 
-        rotate: [0, 0.5, 0], 
+        rotate: [-0.5, 0.5, -0.5], 
         boxShadow: "6px 6px 0px rgba(0,0,0,0.3)"
       }}
       whileTap={{ scale: 0.98 }}
